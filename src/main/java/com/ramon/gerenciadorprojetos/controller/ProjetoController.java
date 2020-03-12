@@ -33,7 +33,7 @@ public class ProjetoController {
 	public String listar(ModelMap model) {
 		model.addAttribute("projetos", projetoService.find());
 		model.addAttribute("mensagem", "Você realmente deseja excluir este projeto?");
-		return "/projeto/lista";
+		return "projeto/lista";
 	}
 	
 	@PostMapping("/salvar")
