@@ -26,7 +26,7 @@ public class ProjetoController {
 	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Projeto projeto) {
-		return "/projeto/form";
+		return "projeto/form";
 	}
 	
 	@GetMapping("/listar")
@@ -40,7 +40,7 @@ public class ProjetoController {
 	public String salvar(@Valid Projeto projeto, BindingResult result, RedirectAttributes attr) {
 		
 		if(result.hasErrors()) {
-			return "/projeto/form";
+			return "projeto/form";
 		}
 		projetoService.save(projeto);
 		attr.addFlashAttribute("success", "projeto inserido com sucesso.");
@@ -54,7 +54,7 @@ public class ProjetoController {
 	
 		try {
 			model.addAttribute("projeto", projetoService.findById(id));
-			return "/projeto/form";
+			return "projeto/form";
 		}catch (Exception e) {
 			model.addAttribute("fail", "Projeto não existe");
 			return listar(model);		}
@@ -67,7 +67,7 @@ public class ProjetoController {
 	public String editar(@Valid Projeto projeto, BindingResult result, RedirectAttributes attr){
 		
 		if(result.hasErrors()) {
-			return "/projeto/form";
+			return "projeto/form";
 		}
 		
 		if(projeto.getId() == null) {

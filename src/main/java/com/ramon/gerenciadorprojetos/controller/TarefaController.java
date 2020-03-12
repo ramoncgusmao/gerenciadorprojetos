@@ -35,7 +35,7 @@ public class TarefaController {
 		tarefa = new TarefaDto();
 		tarefa.setProjeto(projetoId);
 		model.addAttribute("tarefa", tarefa);
-		return "/tarefa/form";
+		return "tarefa/form";
 	}
 	
 	@GetMapping("/listar/{id}")
@@ -43,7 +43,7 @@ public class TarefaController {
 		model.addAttribute("tarefas", tarefaService.findByProjeto(projetoId));
 		model.addAttribute("projetoId", projetoId);
 		model.addAttribute("mensagem", "Você realmente deseja excluir este tarefa?");
-		return "/tarefa/lista";
+		return "tarefa/lista";
 	}
 	
 	@PostMapping("/salvar/")
@@ -53,7 +53,7 @@ public class TarefaController {
 		tarefa.setProjeto(projetoService.findById(tarefa.getProjeto().getId()));
 	
 		if(result.hasErrors()) {
-			return "/tarefa/form";
+			return "tarefa/form";
 		}
 	
 		tarefaService.save(tarefa);
@@ -71,7 +71,7 @@ public class TarefaController {
 			TarefaDto dto = new TarefaDto(tarefa.getId(), tarefa.getTitulo(), tarefa.getProjeto().getId());
 			model.addAttribute("tarefa", dto);
 			
-			return "/tarefa/form";
+			return "tarefa/form";
 		}catch (Exception e) {
 			model.addAttribute("fail", "Tarefa não existe");
 			return "/";
@@ -85,7 +85,7 @@ public class TarefaController {
 	public String editar(@Valid TarefaDto dto, BindingResult result, RedirectAttributes attr){
 		
 		if(result.hasErrors()) {
-			return "/tarefa/form";
+			return "tarefa/form";
 		}
 		
 		if(dto.getId() == null) {
