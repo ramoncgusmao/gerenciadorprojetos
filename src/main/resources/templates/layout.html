@@ -46,10 +46,19 @@
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 	    
+		
 		var url = '';
 		
 		$('button[id*="btn_"]').click(function() {
-			url = "http://localhost:8080/" + $(this).attr('id').split("_")[1]; //separando o a url do do nome btn e deixando a url completa salva
+			
+			var urlReal = window.location.href.toString();
+			
+			if (urlReal.includes("localhost")){
+				url = "http://localhost:8080/";
+			}else{
+				url = "https://gerenciador-projetos.herokuapp.com/";
+			}
+			url = url + $(this).attr('id').split("_")[1]; //separando o a url do do nome btn e deixando a url completa salva
 		
 		})
 	
