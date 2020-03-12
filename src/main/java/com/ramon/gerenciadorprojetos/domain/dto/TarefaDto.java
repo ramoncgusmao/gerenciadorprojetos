@@ -4,11 +4,18 @@ import com.ramon.gerenciadorprojetos.domain.model.Projeto;
 import com.ramon.gerenciadorprojetos.domain.model.Tarefa;
 import com.sun.istack.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TarefaDto {
 
+	@NotNull
+	private Integer id; 
+	
 	@NotNull
 	private String titulo; 
 	

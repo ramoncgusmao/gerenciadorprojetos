@@ -1,7 +1,6 @@
 package com.ramon.gerenciadorprojetos.domain.dto;
 
-import java.util.Date;
-
+import com.ramon.gerenciadorprojetos.controller.conversor.ConvertStringToDate;
 import com.ramon.gerenciadorprojetos.domain.model.Projeto;
 import com.sun.istack.NotNull;
 
@@ -14,10 +13,12 @@ public class ProjetoDto {
 	private String titulo;
 	
 	@NotNull
-	private Date previsaoEntrega;
+	private String previsaoEntrega;
 
 	public Projeto convertToEntity() {
 		// TODO Auto-generated method stub
-		return Projeto.builder().titulo(titulo).previsaoEntrega(previsaoEntrega).build();
+		ConvertStringToDate convert = new ConvertStringToDate();
+		return Projeto.builder().titulo(titulo)
+				.previsaoEntrega( convert.convert(previsaoEntrega)).build();
 	}
 }

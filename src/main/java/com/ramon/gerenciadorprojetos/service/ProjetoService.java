@@ -17,6 +17,9 @@ public class ProjetoService {
 	@Autowired
 	private ProjetoRepository repository;
 	
+	@Autowired
+	private TarefaService tarefaService;
+	
 	public Projeto save(Projeto projeto) {
 		// TODO Auto-generated method stub
 		return repository.save(projeto);
@@ -24,7 +27,7 @@ public class ProjetoService {
 
 	public List<Projeto> find() {
 		// TODO Auto-generated method stub
-		return repository.findAll();
+		return repository.findAllByOrderByPrevisaoEntregaAsc();
 	}
 
 	public Projeto findById(Integer id) {
@@ -52,6 +55,12 @@ public class ProjetoService {
 			throw new DataIntegrityException("não foi possivel deletar o id = " + id + " por causa: " + e.getMessage());
 		}
 		
+	}
+
+	public boolean projetoComTarefa(Integer id) {
+		
+		
+		return tarefaService.existsByProjeto(id);
 	}
 
 	

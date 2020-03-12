@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ramon.gerenciadorprojetos.domain.model.Tarefa;
 import com.ramon.gerenciadorprojetos.repository.TarefaRepository;
 import com.ramon.gerenciadorprojetos.service.exception.DataIntegrityException;
 import com.ramon.gerenciadorprojetos.service.exception.ObjectNotFoundException;
 
-
+@Service
 public class TarefaService {
 
 	@Autowired
@@ -24,6 +25,11 @@ public class TarefaService {
 	public List<Tarefa> find() {
 		// TODO Auto-generated method stub
 		return repository.findAll();
+	}
+	
+	public List<Tarefa> findByProjeto(Integer projetoId) {
+		// TODO Auto-generated method stub
+		return repository.findByProjeto_Id(projetoId);
 	}
 
 	public Tarefa findById(Integer id) {
@@ -51,6 +57,11 @@ public class TarefaService {
 			throw new DataIntegrityException("não foi possivel deletar o id = " + id + " por causa: " + e.getMessage());
 		}
 		
+	}
+
+	public boolean existsByProjeto(Integer id) {
+		// TODO Auto-generated method stub
+		return repository.existsByProjeto_Id(id);
 	}
 
 }
